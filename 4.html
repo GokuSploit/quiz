@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+            padding: 1px 0;
+            background-color: pink;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 50px 0;
+            font-size: 30px;
+            
+        
+        }
+        .checkbox-container {
+            margin-bottom: 100px;
+            font-size: 25px;
+            
+            
+            
+        }
+        .error-message {
+            color: #ff0000;
+            border: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .sucess-message {
+            color: #ff0000;
+            border: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button {
+            background-color: rgba(199, 136, 146, 0.767);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .confirm-button:hover{
+            background-color: #8000b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="question">
+    <p>Who you love the most?</p>
+</div>
+
+<div class="checkbox-container">
+    <input type="checkbox" id="color-blue" name="color" value="Your dog">
+    <label for="color-blue">YeS</label><br>
+    <input type="checkbox" id="color-red" name="color" value="Your cat">
+    <label for="color-red">YEs</label><br>
+    <input type="checkbox" id="color-green" name="color" value="Your pc">
+    <label for="color-green">yeS</label><br>
+    <input type="checkbox" id="1" name="color" value="1">
+    <label for="1">Yes</label><br>
+</div>
+
+<div class="confirm-button" onclick="confirmChoice()">Confirm Choice</div>
+
+<div id="error-message" class="error-message" style="display: none;">
+    Are you dumb? Select something bruh.
+</div>
+
+<div id="sucess-message" class="error-message" style="display: none;">
+    Hmm... Select one only!
+</div>
+
+<script>
+    var isNewCheckboxAdded = false;
+    var isYeschecked = false;
+
+    function confirmChoice() {
+        var checkboxes = document.querySelectorAll('input[name="color"]');
+        var isChecked = false;
+        
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                isChecked = true;
+                if(checkboxes[i].value == "1") {
+                    isYeschecked = true;
+                }
+                
+                break;
+            }
+        }
+
+        if (!isChecked) {
+            document.getElementById('error-message').style.display = 'block';
+            document.getElementById('success-message').style.display = 'none';
+        } else {
+            
+            document.getElementById('sucess-message').style.display = 'block';
+            document.getElementById('error-message').style.display = 'none';
+            if (!isNewCheckboxAdded) {
+                addNewCheckbox();
+                isNewCheckboxAdded = true;
+            }
+        
+            if (isYeschecked) {
+                window.location.href = '5.html'; // Redirect to another page
+            }
+        }
+    }
+
+    function addNewCheckbox() {
+        var container = document.querySelector('.checkbox-container');
+        var newCheckbox = document.createElement('input');
+        newCheckbox.type = 'checkbox';
+        newCheckbox.id = 'color-new';
+        newCheckbox.name = 'color';
+        newCheckbox.value = 'new';
+        var newLabel = document.createElement('label');
+        newLabel.htmlFor = 'color-new';
+        newLabel.textContent = 'No';
+        container.appendChild(newCheckbox);
+        container.appendChild(newLabel);
+        container.appendChild(document.createElement('br'));
+
+        newCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                window.location.href = 'death.html'; // Redirect to another page
+            }
+        });
+    }
+    
+
+    
+</script>
+
+
+
+</body>
+</html>
